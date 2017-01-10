@@ -1,7 +1,7 @@
 import store from './store'
 import bus, {EventEmitter} from '@theatersoft/bus'
 import {log} from './log'
-import {initDevices} from './actions'
+import {initDevices, setState} from './actions'
 
 const dedup = (getState, _state = getState()) => f => (_next = getState()) => {
     if (_next !== _state) {
@@ -31,5 +31,16 @@ export class Device {
 
     getState () {
         return store.getState()
+    }
+
+    registerService (name) {
+        log('registerService', name)
+        bus.proxy(name).getState()
+            .then(state => {
+                store.dispatch(setState(name, state))
+                bus.registerListener(`/${name}.state`, state => {
+                    store.dispatch(setState(name, state))
+                })
+            })
     }
 }
