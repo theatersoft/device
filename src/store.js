@@ -1,5 +1,5 @@
 import bus, {EventEmitter} from '@theatersoft/bus'
-import {combineReducers, createStore} from 'redux'
+import {createStore} from 'redux'
 import devToolsEnhancer from 'remote-redux-devtools'
 import reducer from './reducer'
 import {Time} from './Time'
@@ -11,6 +11,7 @@ const store = createStore(
     reducer,
     {
         devices: [],
+        values: {},
         Time: time.getState()
     },
     devToolsEnhancer({name: 'Device', realtime: true, port: 6400})

@@ -6,8 +6,6 @@ const
         export: 'Device',
         name: 'Device',
         config: {
-            devices: [
-            ]
         }
     },
     service = new (require(options.module)[options.export])()

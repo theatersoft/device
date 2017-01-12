@@ -1,7 +1,7 @@
 import store from './store'
 import bus, {EventEmitter} from '@theatersoft/bus'
 import {log} from './log'
-import {initDevices, setState} from './actions'
+import {setState} from './actions'
 
 const dedup = (getState, _state = getState()) => f => (_next = getState()) => {
     if (_next !== _state) {
@@ -11,11 +11,10 @@ const dedup = (getState, _state = getState()) => f => (_next = getState()) => {
 }
 
 export class Device {
-    start ({name, config: {devices = []}}) {
+    start ({name}) {
         Object.assign(this, {name})
         return bus.registerObject(name, this)
             .then(() => {
-                store.dispatch(initDevices(devices))
                 store.subscribe(dedup(store.getState)(state =>
                     bus.signal(`/${this.name}.state`, state)))
             })
