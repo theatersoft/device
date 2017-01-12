@@ -15,6 +15,7 @@ export class Device {
         Object.assign(this, {name})
         return bus.registerObject(name, this)
             .then(() => {
+                bus.signal(`/${this.name}.started`)
                 store.subscribe(dedup(store.getState)(state =>
                     bus.signal(`/${this.name}.state`, state)))
             })
