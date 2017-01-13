@@ -10,8 +10,7 @@ const time = new Time()
 const store = createStore(
     reducer,
     {
-        devices: [],
-        values: {},
+        devices: {},
         Time: time.getState()
     },
     devToolsEnhancer({name: 'Device', realtime: true, port: 6400})

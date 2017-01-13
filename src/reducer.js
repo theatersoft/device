@@ -5,40 +5,20 @@ const devices = (state = [], action) => {
     if (action.type === SET_STATE) {
         const {name, state: {devices, device}} = action
         if (devices)
-            return [
-                ...(state.filter(({id}) => !id.startsWith(`${name}.`))),
-                ...(devices.map(d => ({...d, id: `${name}.${d.id}`})))
-            ]
-        else
-            return [
-                ...(state.filter(({id}) => id !== name)),
-                {...device, id: name}
-            ]
-    }
-    return state
-}
-
-const values = (state = {}, action) => {
-    if (action.type === SET_STATE) {
-        const {name, state: {values, value}} = action
-        if (values)
             return {
-                ...Object.entries(state).reduce((o, [k, v]) => {
-                    if (!k.startsWith(`${name}.`)) o[k] = v
-                    return o
-                }, {}),
-                ...Object.entries(values).reduce((o, [k, v]) => {
-                    o[`${name}.${k}`] = v
+                ...state,
+                ...Object.entries(devices).reduce((o, [k, v]) => {
+                    o[`${name}.${k}`] = {
+                        ...v,
+                        id: `${name}.${k}`
+                    }
                     return o
                 }, {})
             }
         else
             return {
-                ...Object.entries(state).reduce((o, [k, v]) => {
-                    if (!k.startsWith(`${name}.`)) o[k] = v
-                    return o
-                }, {}),
-                [name]: value
+                ...state,
+                [name]: {...device, id: name}
             }
     }
     return state
@@ -50,25 +30,7 @@ const Time = (state = {}, action) => {
     return state
 }
 
-const globals = (state, action) => {
-    switch (action.type) {
-    case SET_STATE:
-        const {devices, values, ...other} = action.state
-        return {
-            ...state,
-            [action.name]: other
-        }
-    }
-    return state
-}
-
-const slices = combineReducers({
+export default combineReducers({
     devices,
-    values,
     Time
 })
-
-export default function (state, action) {
-    //return globals(slices(state, action), action)
-    return slices(state, action)
-}
