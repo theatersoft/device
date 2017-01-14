@@ -30,7 +30,21 @@ const Time = (state = {}, action) => {
     return state
 }
 
-export default combineReducers({
+const reducer = combineReducers({
     devices,
     Time
 })
+
+import bus from '@theatersoft/bus'
+import {ON, OFF} from './actions'
+
+export default function (state, action) {
+    switch (action.type) {
+    case ON:
+    case OFF:
+        const [, service, id] = /^(\w+).(\w+)$/.exec(action.id)
+        bus.proxy(service).dispatch({type: action.type, id})
+        return state
+    }
+    return reducer(state, action)
+}
