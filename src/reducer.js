@@ -7,13 +7,8 @@ const devices = (state = [], action) => {
         if (devices)
             return {
                 ...state,
-                ...Object.entries(devices).reduce((o, [k, v]) => {
-                    o[`${name}.${k}`] = {
-                        ...v,
-                        id: `${name}.${k}`
-                    }
-                    return o
-                }, {})
+                ...Object.entries(devices).reduce((o, [k, v]) =>
+                    (o[`${name}.${k}`] = {...v, id: `${name}.${k}`}, o), {})
             }
         else
             return {
