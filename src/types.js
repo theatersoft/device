@@ -16,7 +16,7 @@ export const
     toInterface = type => ({
         [Type.Switch]: Interface.SWITCH_BINARY,
         [Type.Receptacle]: Interface.SWITCH_BINARY,
-        [Type.Dimmer]: Interface.SENSOR_MULTILEVEL,
+        [Type.Dimmer]: Interface.SWITCH_MULTILEVEL,
         [Type.DoorWindowSensor]: Interface.SENSOR_BINARY,
         [Type.MotionSensor]: Interface.SENSOR_BINARY
     }[type])
