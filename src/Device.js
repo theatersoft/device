@@ -1,4 +1,4 @@
-import store from './store'
+import {createDeviceStore} from './store'
 import bus, {EventEmitter} from '@theatersoft/bus'
 import {log} from './log'
 import {setState} from './actions'
@@ -15,8 +15,9 @@ export class Device {
         Object.assign(this, {name})
         return bus.registerObject(name, this)
             .then(() => {
+                this.store = createDeviceStore()
                 bus.signal(`/${this.name}.started`)
-                store.subscribe(dedup(store.getState)(state =>
+                this.store.subscribe(dedup(this.store.getState)(state =>
                     bus.signal(`/${this.name}.state`, state)))
             })
     }
@@ -26,20 +27,20 @@ export class Device {
     }
 
     dispatch (action) {
-        return store.dispatch(action)
+        return this.store.dispatch(action)
     }
 
     getState () {
-        return store.getState()
+        return this.store.getState()
     }
 
     registerService (name) {
         log('registerService', name)
         bus.proxy(name).getState()
             .then(state => {
-                store.dispatch(setState(name, state))
+                this.store.dispatch(setState(name, state))
                 bus.registerListener(`/${name}.state`, state => {
-                    store.dispatch(setState(name, state))
+                    this.store.dispatch(setState(name, state))
                 })
             })
     }
