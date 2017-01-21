@@ -10,13 +10,13 @@ export const
         Dimmer: 'Dimmer',
         Receptacle: 'Receptacle',
         BinarySensor: 'BinarySensor',
-        DoorWindowSensor: 'DoorWindowSensor',
+        SecuritySensor: 'SecuritySensor',
         MotionSensor: 'MotionSensor'
     },
-    toInterface = type => ({
+    interfaceOfType = type => ({
         [Type.Switch]: Interface.SWITCH_BINARY,
         [Type.Receptacle]: Interface.SWITCH_BINARY,
         [Type.Dimmer]: Interface.SWITCH_MULTILEVEL,
-        [Type.DoorWindowSensor]: Interface.SENSOR_BINARY,
+        [Type.SecuritySensor]: Interface.SENSOR_BINARY,
         [Type.MotionSensor]: Interface.SENSOR_BINARY
     }[type])

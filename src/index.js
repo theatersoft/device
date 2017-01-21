@@ -1,3 +1,3 @@
 export {Device} from './Device'
 export {Time} from './Time'
-export {Interface, Type, toInterface} from './types'
+export {Interface, Type, interfaceOfType} from './types'
