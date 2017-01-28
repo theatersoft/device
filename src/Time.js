@@ -13,10 +13,10 @@ export class Time extends EventEmitter {
         tick()
         if (name)
             return bus.registerObject(this.name, this)
-                .then(() => {
+                .then(obj => {
                     this.name = name
                     this.on('minute', state =>
-                        bus.signal(`/${this.name}.state`, state))
+                        obj.signal('state', state))
                 })
     }
 

@@ -14,11 +14,11 @@ export class Device {
     start ({name}) {
         Object.assign(this, {name})
         return bus.registerObject(name, this)
-            .then(() => {
+            .then(obj => {
                 this.store = createDeviceStore()
-                bus.signal(`/${this.name}.started`)
+                obj.signal('start')
                 this.store.subscribe(dedup(this.store.getState)(state =>
-                    bus.signal(`/${this.name}.state`, state)))
+                    obj.signal('state', state)))
             })
     }
 
@@ -39,7 +39,7 @@ export class Device {
         bus.proxy(name).getState()
             .then(state => {
                 this.store.dispatch(setState(name, state))
-                bus.registerListener(`/${name}.state`, state => {
+                bus.registerListener(`${name}.state`, state => {
                     this.store.dispatch(setState(name, state))
                 })
             })
