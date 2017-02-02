@@ -14,11 +14,14 @@ const
     strip = require('rollup-plugin-strip')
 
 const targets = {
-    node () {
+    node (format = 'cjs') {
         console.log('target node')
         exec('mkdir -p dist')
+        const
+            es = format === 'es' ? '.es' : '',
+            dest = `dist/${name}${es}.js`
         rollup.rollup({
-                entry: 'src/index.js',
+                entry: `src/index${es}.js`,
                 external: [
                     'redux',
                     !DIST && 'remote-redux-devtools',
@@ -58,14 +61,19 @@ const targets = {
             })
             .then(bundle => {
                 bundle.write({
-                        dest: `dist/${name}.js`,
-                        format: 'cjs',
+                        dest,
+                        format,
                         moduleName: name,
                         banner: copyright,
-                        sourceMap: DIST ? false : 'inline'
+                        sourceMap: !DIST
                     })
-                    .then(() => console.log(`wrote dist/${name}.js`))
+                    .then(() => console.log(`wrote ${dest}`))
             })
+    },
+
+    clean () {
+        console.log('target clean')
+        exec('mkdir -p dist; rm -f dist/*')
     },
 
     package () {
@@ -84,8 +92,10 @@ const targets = {
     },
 
     all () {
-        target.node()
-        target.package()
+        targets.clean()
+        targets.node()
+        targets.node('es')
+        targets.package()
     }
 }
 

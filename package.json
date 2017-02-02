@@ -1,8 +1,9 @@
 {
   "name": "@theatersoft/device",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "dist/device.js",
+  "jsnext:main": "dist/device.es.js",
   "scripts": {
     "BUS": "BUS=`[ -f .bus ] && cat .bus` AUTH=`[ -f .auth ] && cat .auth`",
     "DEVBUS": "BUS=`[ -f .dev.bus ] && cat .dev.bus` AUTH=`[ -f .dev.auth ] && cat .dev.auth`",
