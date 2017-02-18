@@ -11,6 +11,7 @@ const
     rollup = require('rollup'),
     babel = require('rollup-plugin-babel'),
     ignore = require('rollup-plugin-ignore'),
+    nodeResolve = require('rollup-plugin-node-resolve'),
     strip = require('rollup-plugin-strip')
 
 const targets = {
@@ -56,7 +57,8 @@ const targets = {
                         ] : [])
                     }),
                     DIST && ignore(['remote-redux-devtools']),
-                    DIST && strip({functions: ['devToolsEnhancer']})
+                    DIST && strip({functions: ['devToolsEnhancer']}),
+                    nodeResolve({jsnext: true})
                 ]
             })
             .then(bundle => {
