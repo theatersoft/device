@@ -7,4 +7,5 @@ export const
     setState = (name, state) => ({type: SET_STATE, name, state})
 
 export {ON, OFF, on, off} from './switchActions'
+export {BRIGHT, DIM, bright, dim} from './dimmerActions'
 
