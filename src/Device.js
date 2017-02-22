@@ -36,12 +36,16 @@ export class Device {
 
     registerService (name) {
         log('registerService', name)
+        const services = {}
         bus.proxy(name).getState()
             .then(state => {
                 this.store.dispatch(setState(name, state))
-                bus.registerListener(`${name}.state`, state => {
-                    this.store.dispatch(setState(name, state))
-                })
+                // prevent dup registration since services may restart
+                if (!services[name]) {
+                    services[name] = true
+                    bus.registerListener(`${name}.state`, state =>
+                        this.store.dispatch(setState(name, state)))
+                }
             })
     }
 }
