@@ -11,11 +11,11 @@ const dedup = (getState, _state = getState()) => f => (_next = getState()) => {
 }
 
 export class Device {
-    start ({name}) {
+    start ({name, config}) {
         Object.assign(this, {name})
         return bus.registerObject(name, this)
             .then(obj => {
-                this.store = createDeviceStore()
+                this.store = createDeviceStore(config)
                 obj.signal('start')
                 this.store.subscribe(dedup(this.store.getState)(state =>
                     obj.signal('state', state)))

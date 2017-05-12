@@ -5,7 +5,7 @@ import reducer from './reducer'
 import {Time} from './Time'
 import {setTime} from './actions'
 
-export const createDeviceStore = () => {
+export const createDeviceStore = ({remotedev}) => {
     const
         time = new Time(),
         store = createStore(
@@ -14,7 +14,7 @@ export const createDeviceStore = () => {
                 devices: {},
                 Time: time.getState()
             },
-            devToolsEnhancer({name: 'Device', realtime: true, port: 6400})
+            remotedev && devToolsEnhancer({name: 'Device', realtime: true, port: 6400, hostname: remotedev})
         )
     time.start()
     time.on('minute', time => store.dispatch(setTime(time)))
