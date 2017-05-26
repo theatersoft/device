@@ -3,7 +3,7 @@ import bus, {EventEmitter} from '@theatersoft/bus'
 import {log} from './log'
 import {setState} from './actions'
 
-const dedup = (getState, _state = getState()) => f => (_next = getState()) => {
+const dedup = (getState, _state = {}) => f => (_next = getState()) => {
     if (_next !== _state) {
         _state = _next
         f(_next)
