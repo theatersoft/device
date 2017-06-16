@@ -3,6 +3,8 @@ import bus, {EventEmitter} from '@theatersoft/bus'
 import {log} from './log'
 import {setState} from './actions'
 
+const selectDevices = getState => ({devices} = getState()) => devices
+const selectTime = getState => ({Time} = getState()) => Time
 const dedup = (getState, _state = {}) => f => (_next = getState()) => {
     if (_next !== _state) {
         _state = _next
@@ -17,8 +19,10 @@ export class Device {
             .then(obj => {
                 this.store = createDeviceStore(config)
                 obj.signal('start')
-                this.store.subscribe(dedup(this.store.getState)(state =>
-                    obj.signal('state', state)))
+                this.store.subscribe(dedup(selectDevices(this.store.getState))(devices =>
+                    obj.signal('state', {devices})))
+                this.store.subscribe(dedup(selectTime(this.store.getState))(Time =>
+                    obj.signal('time', {Time})))
             })
     }
 
