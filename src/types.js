@@ -15,7 +15,8 @@ export const
         SecuritySensor: 'SecuritySensor',
         MotionSensor: 'MotionSensor',
         DuskSensor: 'DuskSensor',
-        Projector: 'Projector'
+        Projector: 'Projector',
+        Siren: 'Siren'
     },
     interfaceOfType = type => ({
         [Type.Switch]: Interface.SWITCH_BINARY,
@@ -26,5 +27,6 @@ export const
         [Type.SecuritySensor]: Interface.SENSOR_BINARY,
         [Type.MotionSensor]: Interface.SENSOR_BINARY,
         [Type.DuskSensor]: Interface.SENSOR_BINARY,
-        [Type.Projector]: Interface.SWITCH_BINARY
+        [Type.Projector]: Interface.SWITCH_BINARY,
+        [Type.Siren]: Interface.SWITCH_BINARY
     }[type])
