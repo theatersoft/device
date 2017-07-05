@@ -7,6 +7,7 @@ export const
     },
     Type = {
         Switch: 'Switch',
+        LightSwitch: 'LightSwitch',
         PowerSwitch: 'PowerSwitch',
         Dimmer: 'Dimmer',
         Receptacle: 'Receptacle',
@@ -18,6 +19,7 @@ export const
     },
     interfaceOfType = type => ({
         [Type.Switch]: Interface.SWITCH_BINARY,
+        [Type.LightSwitch]: Interface.SWITCH_BINARY,
         [Type.PowerSwitch]: Interface.SWITCH_BINARY,
         [Type.Receptacle]: Interface.SWITCH_BINARY,
         [Type.Dimmer]: Interface.SWITCH_MULTILEVEL,
