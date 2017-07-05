@@ -6,6 +6,6 @@ export const
     setTime = time => ({type: SET_TIME, time}),
     setState = (name, state) => ({type: SET_STATE, name, state})
 
-export {ON, OFF, on, off} from './switchActions'
-export {BRIGHT, DIM, bright, dim} from './dimmerActions'
+export * from './switchActions'
+export * from './dimmerActions'
 
