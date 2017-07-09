@@ -1,5 +1,7 @@
 export {Device} from './Device'
 export {Time} from './Time'
 export {Interface, Type, interfaceOfType} from './types'
-export * from './actions/switchActions'
-export * from './actions/dimmerActions'
+import * as switchActions from './actions/switchActions'
+export {switchActions}
+import * as dimmerActions from './actions/dimmerActions'
+export {dimmerActions}
