@@ -4,7 +4,7 @@
   "description": "Bus service module for aggregated device store",
   "repository": "theatersoft/device",
   "main": "device.js",
-  "jsnext:main": "device.es.js",
+  "module": "device.es.js",
   "engines": {
     "node": ">=7.6.0"
   },
