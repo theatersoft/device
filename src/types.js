@@ -16,7 +16,8 @@ export const
         MotionSensor: 'MotionSensor',
         DuskSensor: 'DuskSensor',
         Projector: 'Projector',
-        Siren: 'Siren'
+        Siren: 'Siren',
+        Hvac: 'Hvac'
     },
     interfaceOfType = type => ({
         [Type.Switch]: Interface.SWITCH_BINARY,
