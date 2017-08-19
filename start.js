@@ -6,6 +6,7 @@ const
         export: 'Device',
         name: 'Device',
         config: {
+            remotedev: 'localhost'
         }
     },
     service = new (require(options.module)[options.export])()
