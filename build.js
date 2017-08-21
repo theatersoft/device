@@ -39,7 +39,8 @@ const targets = {
                         //presets: [babili],
                         plugins: [
                             //require("babel-plugin-transform-class-properties"),
-                            [require("babel-plugin-transform-object-rest-spread"), {useBuiltIns: true}]
+                            [require("babel-plugin-transform-object-rest-spread"), {useBuiltIns: true}],
+                            require("babel-plugin-transform-class-properties")
                         ].concat(DIST ? [
                             require("babel-plugin-minify-constant-folding"),
                             //require("babel-plugin-minify-dead-code-elimination"), // FAIL NodePath has been removed so is read-only

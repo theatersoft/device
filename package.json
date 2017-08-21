@@ -36,6 +36,7 @@
     }
   },
   "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.19.0",
     "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-preset-babili": "0.0.8",
     "rollup": "^0.42.0",
