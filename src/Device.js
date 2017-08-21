@@ -11,6 +11,8 @@ const dedup = (getState, _state = {}) => f => (_next = getState()) => {
 }
 
 export class Device {
+    services = {}
+
     start ({name, config}) {
         Object.assign(this, {name})
         return bus.registerObject(name, this)
@@ -36,13 +38,12 @@ export class Device {
 
     registerService (name) {
         log('registerService', name)
-        const services = {}
         bus.proxy(name).getState()
             .then(state => {
                 this.store.dispatch(setState(name, state))
                 // prevent dup registration since services may restart
-                if (!services[name]) {
-                    services[name] = true
+                if (!this.services[name]) {
+                    this.services[name] = true
                     bus.registerListener(`${name}.state`, state =>
                         this.store.dispatch(setState(name, state)))
                 }
