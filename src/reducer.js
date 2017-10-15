@@ -31,14 +31,15 @@ const reducer = combineReducers({
 })
 
 import bus from '@theatersoft/bus'
-import {ON, OFF} from './actions'
+import {ON, OFF, SET} from './actions'
 
 export default function (state, action) {
     switch (action.type) {
     case ON:
     case OFF:
+    case SET:
         const [, service, id] = /^(\w+)\.(\w+)$/.exec(action.id) || /^(\w+)$/.exec(action.id)
-        bus.proxy(service).dispatch({type: action.type, id})
+        bus.proxy(service).dispatch({...action, id})
         return state
     }
     return reducer(state, action)
