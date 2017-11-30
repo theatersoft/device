@@ -86,10 +86,27 @@ const targets = {
         exec('npm publish --access=public dist')
     },
 
-    all () {
-        targets.node()
-        targets.node('es')
-        targets.package()
+    async watch () {
+        await targets.all()
+        require('chokidar').watch([
+                'src'
+            ])
+            .on('change', path => {
+                console.log(new Date().toLocaleTimeString(), path)
+                targets.all()
+            })
+            .on('error', e => console.log(e))
+    },
+
+    async all () {
+        try {
+            await targets.node()
+            await targets.node('es')
+            await targets.package()
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 }
 
