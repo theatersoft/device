@@ -1,6 +1,6 @@
 import {createDeviceStore} from './store'
 import bus, {EventEmitter} from '@theatersoft/bus'
-import {log} from './log'
+import {log} from '../log'
 import {setState} from './actions'
 
 const dedup = (getState, _state = {}) => f => (_next = getState()) => {

@@ -2,7 +2,7 @@ import bus, {EventEmitter} from '@theatersoft/bus'
 import {createStore} from 'redux'
 import devToolsEnhancer from 'remote-redux-devtools'
 import reducer from './reducer'
-import {Time} from './Time'
+import {Time} from '../Time'
 import {setTime} from './actions'
 
 export const createDeviceStore = ({remotedev}) => {
