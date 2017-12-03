@@ -1,5 +1,7 @@
-import {Type} from '../types'
+import {Type, interfaceOfType, Interface} from '../types'
+import {ON, OFF, on, off} from '../actions'
 import {log} from './log'
+import bus from '@theatersoft/bus'
 
 const
     index = a => a.reduce((o, e) => (o[e.id] = e, o), {})
@@ -12,22 +14,25 @@ export const
         groups: groups.map(({devices}) => devices)
     })
 
-import {switchActions} from '@theatersoft/device'
-export const {ON, OFF, on, off} = switchActions
-
 export const
-    api = action => (dispatch, getState, {codec}) => {
+    api = action => (dispatch, getState) => {
         const
             {id, type} = action,
-            device = getState().devices[id]
-        if (!device) return error(`no device for ${action}`)
+            state = getState(),
+            {devices, groups} = state,
+            device = devices[id],
+            group = groups[id]
+        if (!device) throw `no device for ${action}`
         if (interfaceOfType(device.type) === Interface.SWITCH_BINARY) {
             switch (type) {
             case ON:
             case OFF:
-                const virtual = getState().devices[`${id}.0`]
-                dispatch({...action, ...virtual && {time: Date.now()}})
-                codec.send(type, id)
+                group.forEach(dev => {
+                    const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(dev)
+                    log(`${device.name} ${dev} ${type}`)
+                    bus.proxy(service).dispatch({type, id})
+                })
+                // TODO update value
             }
         }
     }
