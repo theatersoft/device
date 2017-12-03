@@ -7,4 +7,3 @@ export const
     setState = (name, state) => ({type: SET_STATE, name, state})
 
 export * from '../actions'
-

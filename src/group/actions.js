@@ -1,4 +1,4 @@
-import {Type} from '@theatersoft/device'
+import {Type} from '../types'
 import {log} from './log'
 
 const
@@ -8,7 +8,7 @@ export const
     INIT = 'INIT',
     init = groups => ({
         type: INIT,
-        devices: index(groups.map(({name}, i) => ({id: i, name, type: Type.Group}))),
+        devices: index(groups.map(({name, type = Type.Group}, i) => ({name, value: false, type, id: i}))),
         groups: groups.map(({devices}) => devices)
     })
 
