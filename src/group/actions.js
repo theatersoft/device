@@ -8,7 +8,7 @@ export const
     INIT = 'INIT',
     init = groups => ({
         type: INIT,
-        devices: index(groups.map(({name}) => ({name, type: Type.Group}))),
+        devices: index(groups.map(({name}, i) => ({id: i, name, type: Type.Group}))),
         groups: groups.map(({devices}) => devices)
     })
 
