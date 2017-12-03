@@ -1,4 +1,5 @@
 export {Device} from './device'
+export {Group} from './group'
 export {Time} from './Time'
 export {Interface, Type, interfaceOfType} from './types'
 import * as switchActions from './actions/switchActions'

@@ -21,6 +21,7 @@
     "dependencies": {
       "@theatersoft/bus": "~1",
       "redux": "^3.6.0",
+      "redux-thunk": "^2.1.0",
       "remote-redux-devtools": "^0.5.7"
     },
     "devDependencies": {},
