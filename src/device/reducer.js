@@ -38,7 +38,7 @@ export default function (state, action) {
     case ON:
     case OFF:
     case SET:
-        const [, service, id] = /^(\w+)\.(\w+)$/.exec(action.id) || /^(\w+)$/.exec(action.id)
+        const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(action.id)
         bus.proxy(service).dispatch({...action, id})
         return state
     }
