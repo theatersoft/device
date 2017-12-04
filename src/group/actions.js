@@ -14,6 +14,11 @@ export const
         groups: groups.map(({devices}) => devices)
     })
 
+const serviceId = name => {
+    const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(name)
+    return [service, id]
+}
+
 export const
     api = action => (dispatch, getState) => {
         const
@@ -27,12 +32,12 @@ export const
             switch (type) {
             case ON:
             case OFF:
-                group.forEach(dev => {
-                    const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(dev)
-                    log(`${device.name} ${dev} ${type}`)
-                    bus.proxy(service).dispatch({type, id})
-                })
-                // TODO update value
+                Promise.all(
+                    group
+                        .map(serviceId)
+                        .map(([service, id]) => bus.proxy(service).dispatch({type, id}))
+                    )
+                    .then(() => dispatch({type, id}))
             }
         }
     }

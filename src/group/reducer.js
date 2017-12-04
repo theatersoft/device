@@ -1,4 +1,5 @@
 import {INIT} from './actions'
+import {ON, OFF} from '../actions'
 
 export default function reducer (state, action) {
     const {type} = action
@@ -10,6 +11,22 @@ export default function reducer (state, action) {
             devices,
             groups
         }
+    case ON:
+    case OFF:
+    {
+        const
+            {id} = action,
+            device = state.devices[id],
+            value = type === ON
+        if (device)
+            return {
+                ...state,
+                devices: {
+                    ...state.devices,
+                    [id]: {...device, value}
+                }
+            }
+    }
     }
     return state
 }
