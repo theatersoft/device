@@ -32,12 +32,12 @@ export const
             switch (type) {
             case ON:
             case OFF:
-                Promise.all(
+                return Promise.all(
                     group
                         .map(serviceId)
                         .map(([service, id]) => bus.proxy(service).dispatch({type, id}))
                     )
-                    .then(() => dispatch({type, id}))
+                    .then(() => {dispatch({type, id})})
             }
         }
     }
