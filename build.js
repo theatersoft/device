@@ -60,7 +60,7 @@ const targets = {
                         ] : [])
                     }),
                     DIST && ignore(['remote-redux-devtools']),
-                    DIST && strip({functions: ['devToolsEnhancer']}),
+                    DIST && strip({functions: ['composeWithDevTools']}),
                     nodeResolve({jsnext: true})
                 ]
             })
