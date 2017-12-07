@@ -30,7 +30,7 @@
       "DEVBUS": "env $(cat ~/.config/theatersoft/.bus | xargs)",
       "DEVRUN": "npm run DEVBUS -- node",
       "RUN": "npm run BUS -- node",
-      "link": "npm link; npm link @theatersoft/bus @theatersoft/device",
+      "link": "npm link --no-package-lock; npm link --no-package-lock @theatersoft/bus @theatersoft/device",
       "start": "npm run RUN -- start.js",
       "start-group": "npm run RUN -- start-group.js",
       "start:dev": "npm run DEVRUN -- start.js",
