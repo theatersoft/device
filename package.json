@@ -1,6 +1,6 @@
 {
   "name": "@theatersoft/device",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Bus service module for aggregated device store",
   "repository": "theatersoft/device",
   "main": "device.js",
