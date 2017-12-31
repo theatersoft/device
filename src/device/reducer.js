@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
 import {SET_TIME, SET_STATE} from './actions'
+import {log} from '../log'
 
 const devices = (state = [], action) => {
+    //log('DEVICE REDUCER', action)
     if (action.type === SET_STATE) {
         const {name, state: {devices, device}} = action
         if (devices)
@@ -25,22 +27,7 @@ const Time = (state = {}, action) => {
     return state
 }
 
-const reducer = combineReducers({
+export default combineReducers({
     devices,
     Time
 })
-
-import bus from '@theatersoft/bus'
-import {ON, OFF, SET} from './actions'
-
-export default function (state, action) {
-    switch (action.type) {
-    case ON:
-    case OFF:
-    case SET:
-        const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(action.id)
-        bus.proxy(service).dispatch({...action, id})
-        return state
-    }
-    return reducer(state, action)
-}

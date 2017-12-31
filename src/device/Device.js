@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'remote-redux-devtools'
 import reducer from './reducer'
 import {Time} from '../Time'
-import {setTime, setState} from './actions'
+import {setTime, setState, api} from './actions'
 
 const dedup = (getState, _state = {}) => f => (_next = getState()) => {
     if (_next !== _state) {
@@ -44,7 +44,7 @@ export class Device {
     }
 
     dispatch (action) {
-        return this.store.dispatch(action)
+        return this.store.dispatch(api(action))
     }
 
     getState () {

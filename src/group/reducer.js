@@ -1,7 +1,9 @@
 import {INIT} from './actions'
 import {ON, OFF} from '../actions'
+import {log} from '../log'
 
 export default function reducer (state, action) {
+    //log('GROUP REDUCER', action)
     const {type} = action
     switch (type) {
     case INIT:
