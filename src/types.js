@@ -1,9 +1,10 @@
 export const
     Interface = {
-        SWITCH_BINARY: 'SwitchBinary',
-        SWITCH_MULTILEVEL: 'SwitchMultilevel',
+        BUTTON: 'Button',
         SENSOR_BINARY: 'SensorBinary',
-        SENSOR_MULTILEVEL: 'SensorMultilevel'
+        SENSOR_MULTILEVEL: 'SensorMultilevel',
+        SWITCH_BINARY: 'SwitchBinary',
+        SWITCH_MULTILEVEL: 'SwitchMultilevel'
     },
     Type = {
         BinarySensor: 'BinarySensor',
@@ -21,10 +22,11 @@ export const
         Projector: 'Projector',
         Receptacle: 'Receptacle',
         Siren: 'Siren',
-        Switch: 'Switch'
+        Switch: 'Switch',
+        ToggleButton: 'ToggleButton'
     },
     interfaceOfType = type => ({
-        [Type.Button]: Interface.SENSOR_BINARY,
+        [Type.Button]: Interface.BUTTON,
         [Type.Chime]: Interface.SWITCH_BINARY,
         [Type.Dimmer]: Interface.SWITCH_MULTILEVEL,
         [Type.DuskSensor]: Interface.SENSOR_BINARY,
@@ -37,5 +39,6 @@ export const
         [Type.Projector]: Interface.SWITCH_BINARY,
         [Type.Receptacle]: Interface.SWITCH_BINARY,
         [Type.Siren]: Interface.SWITCH_BINARY,
-        [Type.Switch]: Interface.SWITCH_BINARY
+        [Type.Switch]: Interface.SWITCH_BINARY,
+        [Type.ToggleButton]: Interface.BUTTON
     }[type])
