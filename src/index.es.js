@@ -1,5 +1,2 @@
 export {Interface, Type, interfaceOfType} from './types'
-import * as switchActions from './actions/switchActions'
-export {switchActions}
-import * as dimmerActions from './actions/dimmerActions'
-export {dimmerActions}
+export {switchActions, dimmerActions, buttonActions} from './actions'
