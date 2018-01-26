@@ -9,14 +9,13 @@ export const
 export * from '../actions'
 
 import bus from '@theatersoft/bus'
-import {ON, OFF, SET} from '../actions'
+import {switchActions, dimmerActions, buttonActions} from '../actions'
+
+const deviceActions = Object.values({...switchActions, ...dimmerActions, ...buttonActions})
 
 export const
-    api = action => (dispatch, getState, {}) => {
-        switch (action.type) {
-        case ON:
-        case OFF:
-        case SET:
+    api = action => () => {
+        if (deviceActions.includes(action.type)) {
             const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(action.id)
             return bus.proxy(service).dispatch({...action, id})
         }
