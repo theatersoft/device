@@ -1,4 +1,4 @@
-import {Type, interfaceOfType, Interface} from '../types'
+import {Type, interfaceOfType, Interface, serviceId} from '../'
 import {ON, OFF, on, off} from '../actions'
 import {log} from './log'
 import bus from '@theatersoft/bus'
@@ -13,11 +13,6 @@ export const
         devices: index(groups.map(({name, type = Type.Group}, i) => ({name, value: false, type, id: i}))),
         groups: groups.map(({devices}) => devices)
     })
-
-const serviceId = name => {
-    const [, service, id] = /^(\w+)(?:\.(.+))?$/.exec(name)
-    return [service, id]
-}
 
 export const
     api = action => (dispatch, getState) => {
