@@ -1,5 +1,6 @@
 export const
     Interface = {
+        ALERT: 'Alert',
         BUTTON: 'Button',
         SENSOR_BINARY: 'SensorBinary',
         SENSOR_MULTILEVEL: 'SensorMultilevel',
@@ -7,6 +8,7 @@ export const
         SWITCH_MULTILEVEL: 'SwitchMultilevel'
     },
     Type = {
+        Alert: 'Alert',
         BinarySensor: 'BinarySensor',
         Button: 'Button',
         Chime: 'Chime',
@@ -26,6 +28,7 @@ export const
         ToggleButton: 'ToggleButton'
     },
     interfaceOfType = type => ({
+        [Type.Alert]: Interface.ALERT,
         [Type.Button]: Interface.BUTTON,
         [Type.Chime]: Interface.SWITCH_BINARY,
         [Type.Dimmer]: Interface.SWITCH_MULTILEVEL,
