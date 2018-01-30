@@ -25,6 +25,7 @@ export const
         Receptacle: 'Receptacle',
         Siren: 'Siren',
         Switch: 'Switch',
+        Task: 'Task',
         ToggleButton: 'ToggleButton'
     },
     interfaceOfType = type => ({
@@ -43,5 +44,6 @@ export const
         [Type.Receptacle]: Interface.SWITCH_BINARY,
         [Type.Siren]: Interface.SWITCH_BINARY,
         [Type.Switch]: Interface.SWITCH_BINARY,
+        [Type.Task]: Interface.SWITCH_BINARY,
         [Type.ToggleButton]: Interface.BUTTON
     }[type])
