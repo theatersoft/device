@@ -3,6 +3,7 @@ export const
         ALERT: 'Alert',
         BUTTON: 'Button',
         SENSOR_BINARY: 'SensorBinary',
+        SENSOR_IMAGE: 'SensorImage',
         SENSOR_MULTILEVEL: 'SensorMultilevel',
         SWITCH_BINARY: 'SwitchBinary',
         SWITCH_MULTILEVEL: 'SwitchMultilevel'
@@ -11,6 +12,7 @@ export const
         Alert: 'Alert',
         BinarySensor: 'BinarySensor',
         Button: 'Button',
+        Camera: 'Camera',
         Chime: 'Chime',
         Dimmer: 'Dimmer',
         DuskSensor: 'DuskSensor',
@@ -31,6 +33,7 @@ export const
     interfaceOfType = type => ({
         [Type.Alert]: Interface.ALERT,
         [Type.Button]: Interface.BUTTON,
+        [Type.Camera]: Interface.SENSOR_IMAGE,
         [Type.Chime]: Interface.SWITCH_BINARY,
         [Type.Dimmer]: Interface.SWITCH_MULTILEVEL,
         [Type.DuskSensor]: Interface.SENSOR_BINARY,
