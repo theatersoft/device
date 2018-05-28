@@ -28,6 +28,7 @@ export const
         Siren: 'Siren',
         Switch: 'Switch',
         Task: 'Task',
+        Temperature: 'Temperature',
         ToggleButton: 'ToggleButton'
     },
     interfaceOfType = type => ({
@@ -48,5 +49,6 @@ export const
         [Type.Siren]: Interface.SWITCH_BINARY,
         [Type.Switch]: Interface.SWITCH_BINARY,
         [Type.Task]: Interface.SWITCH_BINARY,
+        [Type.Temperature]: Interface.SENSOR_MULTILEVEL,
         [Type.ToggleButton]: Interface.BUTTON
     }[type])
